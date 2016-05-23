@@ -9,7 +9,6 @@
 
 ![](\Users\Marina\Desktop\pantallazos\pantallazo0.png)
  
- 
 
 
 2. Clonar vuestro repositorio en local.
@@ -160,4 +159,208 @@
 ![](\Users\Marina\Desktop\pantallazos\pantallazo7.png)
 
 
+# Ejercicio práctico sobre la utilización avanzada de Git, GitHub y Markdown
+
+## Crear una rama v0.2
+
+1. Crear una rama v0.2.
+
+		$ git branch V0.2
+        
+2. Posiciona tu carpeta de trabajo en esta rama.
+
+
+    	$ git checkout v0.2
+        
+## Añadir fichero 2.txt
+
+1. Añadir un fichero 2.txt en la rama v0.2.
+
+    	$ touch 2.txt
+        
+## Crear rama remota v0.2
+
+1. Subir los cambios al reposiorio remoto.
+
+		$ git add -A
+        $ git commit -m "2.txt incluida en la rama V0.2"
+		[V0.2 d5ee4d6] 2.txt incluida en la rama V0.2
+ 		2 files changed, 1 insertion(+)
+ 		create mode 100644 2.txt
+
+		$ git push --set-upstream origin V0.2
+
+   
+## Merge directo
+
+1. Posicionarse en la rama master.
+
+   		$ git checkout master
+        
+2. Hacer un merge de la rama v0.2 en la rama master.
+
+		$ git merge V0.2 -m "Se realiza un merge en la rama master"
+		Updating 4e8d823..d5ee4d6
+		Fast-forward (no commit created; -m option ignored)
+ 		2.txt        | 0
+ 		README.md.md | 1 +
+ 		2 files changed, 1 insertion(+)
+ 		create mode 100644 2.txt
+  
+## Merge con conflicto
+
+1. En la rama master poner Hola en el fichero 1.txt y hacer commit.
+
+		$ echo "Hola" >> 1.txt
+		$ git add -A
+		warning: LF will be replaced by CRLF in 1.txt.
+		The file will have its original line endings in your working directory.
+
+		$ git commit -m "Se añade Hola a fichero 1.txt"
+		[master warning: LF will be replaced by CRLF in 1.txt.
+		The file will have its original line endings in your working directory.
+		1feb4c5] Se añade Hola a fichero 1.txt
+		warning: LF will be replaced by CRLF in 1.txt.
+		The file will have its original line endings in your working directory.
+ 		1 file changed, 1 insertion(+)
+
+   
+2. Posicionarse en la rama v0.2 y poner Adios en el fichero "1.txt" y hacer commit.
+
+		$ git checkout V0.2
+		Switched to branch 'V0.2'
+		$ echo "Adios" >> 1.txt
+		$ git add -A
+		warning: LF will be replaced by CRLF in 1.txt.
+		The file will have its original line endings in your working directory.
+		$ git commit -m "Se añade Adios en rama V0.2 en fichero 1.txt"
+		[V0.2 warning: LF will be replaced by CRLF in 1.txt.
+		The file will have its original line endings in your working directory.
+		9b78440] Se añade Adios en rama V0.2 en fichero 1.txt
+		warning: LF will be replaced by CRLF in 1.txt.
+		The file will have its original line endings in your working directory.
+ 		1 file changed, 1 insertion(+)
+
+
+3. Posicionarse de nuevo en la rama master y hacer un merge con la rama v0.2
+
+		$ git checkout master
+		Switched to branch 'master'
+		Your branch is ahead of 'origin/master' by 2 commits.
+  		(use "git push" to publish your local commits)
+		$ git merge V0.2 -m "Se realiza un merge en la rama master desde V0.2"
+		Auto-merging 1.txt
+		CONFLICT (content): Merge conflict in 1.txt
+		Automatic merge failed; fix conflicts and then commit the result.
+		$ git status
+		On branch master
+		Your branch is ahead of 'origin/master' by 2 commits.
+  		(use "git push" to publish your local commits)
+		You have unmerged paths.
+  		(fix conflicts and run "git commit")
+		Unmerged paths:
+  		(use "git add <file>..." to mark resolution)
+        both modified:   1.txt
+		no changes added to commit (use "git add" and/or "git commit -a")
+
+## Listado de ramas
+
+1. Listar las ramas con merge y las ramas sin merge.
+
+		$ git branch --merged
+		* master
+		$ git branch --no-merged
+  		V0.2
+
+## Arreglar conflicto
+
+1. Arreglar el conflicto anterior y hacer un commit.
+
+		$ git add -A
+		$ git commit -m "Cambios corregidos en 1.txt"
+		[master d40345d] Cambios corregidos en 1.txt
+
+
+## Borrar rama
+1. Crear un tag v0.2
+
+		$ git tag V0.2 -m "Se crea un tag para V0.2"
+
+
+
+2. Borrar la rama v0.2
+
+		$ git branch -d V0.2
+        Deleted branch V0.2 (was 9b78440).
+
+## Listado de cambios
+
+1. Listar los distintos commits con sus ramas y sus tags.
+
+		$ git list
+		*   d40345d (HEAD -> master, tag: V0.2) Cambios corregidos en 1.txt
+		|\
+		| * 9b78440 Se añade Adios en rama V0.2 en fichero 1.txt
+		* | 1feb4c5 Se añade Hola a fichero 1.txt
+		|/
+		* d5ee4d6 (origin/V0.2) 2.txt incluida en la rama V0.2
+		* 4e8d823 (origin/master) Otro cambio
+		* 9feb4cd Cambios a readme.md
+		* 1e1edf8 Añadido .gitignore
+		* eda84c9 (tag: V0.1) commit 1.txt
+		* 2a47dfe Commit inicial
+
+
+## Crear una organización
+
+1. Crear una organización llamada campusciff-tunombredeusuariodegithub
+
+Organización creada: campusciff-hefasoca
+
+## Crear equipos
+
+1. Crear 2 equipos en la organización campusciff-tunombredeusuariodegithub, uno
+llamado administradores con más permisos y otro colaboradores con menos permisos.
+
+Se han creado dos equipos: Administradores y Colaboradores.
+
+2. Meter a github.com/asanzdiego y a 2 de vuestros compañeros de clase en el equipo
+administradores.
+
+Añadidos compañeros de clase:
+
++ eserranom
++ annalawrenc
+
+Añadido profesor:
++ asanzdiego
+3. Meter a github.com/asanzdiego y a otros 2 de vuestros compañeros de clase en el equipo
+colaboradores.
+
+Añadidos compañeros de clase:
+
++ amarino
++ juangarciaciff
+
+Añadido profesor:
++ asanzdiego
+
+
+## Crear un index.html
+
+1. Crear un index.html que se pueda ver como página web en la organización.
+
+Se ha creado el siguiente index: https://github.com/campusciff-hefasoca/github.io
+
+## Crear Pull-requests
+
+1. Hacer 2 forks de 2 repositorios campusciff-tunombredeusuariodegithub.github.io de 2
+organizaciones de las que no seais ni administradiores ni colaboradores.
+
+
+2. Crearos una rama en cada fork.
+3. En cada rama modificar el fichero index.html añadiendo vuestro nombre.
+4. Con cada rama hacer un pull-request.
+Gestionar Pull-requests
+1. Aceptar los pull-request que lleguen a los repositorios de tu organización.
 
