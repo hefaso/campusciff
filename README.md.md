@@ -356,11 +356,19 @@ Se ha creado el siguiente index: https://github.com/campusciff-hefasoca/github.i
 
 1. Hacer 2 forks de 2 repositorios campusciff-tunombredeusuariodegithub.github.io de 2
 organizaciones de las que no seais ni administradiores ni colaboradores.
-
+Se ha realizado un pull-request en amarino5 y juangarciaciff
 
 2. Crearos una rama en cada fork.
+
+Se ha creado una rama en cada fork: ramaNuevaHector
+
 3. En cada rama modificar el fichero index.html añadiendo vuestro nombre.
+
+Se ha creado un fichero y se ha realizado un commit en los 2 repositorios forkeados anteriormente: hefaso en repositorios de amarino5 y juangarciaciff
+
+
 4. Con cada rama hacer un pull-request.
 Gestionar Pull-requests
-1. Aceptar los pull-request que lleguen a los repositorios de tu organización.
+
+Se finaliza el ejercicio realizando pull-request para los ficheros creados anterioremente.
 
